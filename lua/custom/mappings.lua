@@ -50,17 +50,4 @@ M.gopher = {
   }
 }
 
-M.overseer = {
-  plugin = false,
-  n = {
-    ["<leader>rr"] = {
-      ":OverseerRun <CR>:OverseerOpen <CR>",
-      "Show task runner",
-    },
-    ["<leader>rt"] = {
-      "<cmd> OverseerToggle <CR>",
-      "Show active tasks"
-    }
-  }
-}
 return M

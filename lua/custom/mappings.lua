@@ -50,4 +50,14 @@ M.gopher = {
   }
 }
 
+M.goimpl = {
+  plugin = false,
+  n = {
+    ["<leader>im"] = {
+      "<cmd>lua require'telescope'.extensions.goimpl.goimpl{}<CR>",
+      "Implement an interface"
+    }
+  }
+}
+
 return M

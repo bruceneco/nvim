@@ -1,48 +1,48 @@
 local plugins = {
   {
-  "kevinhwang91/nvim-ufo",
-     	dependencies = {
-  		"kevinhwang91/promise-async",
-  		"nvim-treesitter/nvim-treesitter",
-  	},
-  	event = "BufRead",
-  	opts = {
-      fold_virt_text_handler = require("custom.configs.ufo"),
-  		preview = {
-  			win_config = {
-  				border = "rounded",
-  				winhighlight = "Normal:Folded",
-  				winblend = 0,
-  			},
-  		},
-  		provider_selector = function()
-  			return { "treesitter", "indent" }
-  		end,
-  	},
-  	init = function()
-  		-- vim.o.foldcolumn = "0"
-  		vim.o.foldlevel = 99
-  		vim.o.foldlevelstart = 99
-  		vim.o.foldenable = true
-  	end,
-  	config = function(_, opts)
-  		require("ufo").setup(opts)
+    "kevinhwang91/nvim-ufo",
+    dependencies = {
+      "kevinhwang91/promise-async",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    event = "BufRead",
+    opts = {
+      fold_virt_text_handler = require("custom.configs.nvim-ufo"),
+      preview = {
+        win_config = {
+          border = "rounded",
+          winhighlight = "Normal:Folded",
+          winblend = 0,
+        },
+      },
+      provider_selector = function()
+        return { "lsp", "indent" }
+      end,
+    },
+    init = function()
+      vim.o.foldcolumn = "0"
+      vim.o.foldlevel = 99
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+    end,
+    config = function(_, opts)
+      require("ufo").setup(opts)
 
-  		-- Global folds
-   		vim.keymap.set("n", "zr", require("ufo").openAllFolds)
-  		vim.keymap.set("n", "zm", require("ufo").closeAllFolds)
+      -- Global folds
+      vim.keymap.set("n", "zr", require("ufo").openAllFolds)
+      vim.keymap.set("n", "zm", require("ufo").closeAllFolds)
 
-  		-- Cursor folds
-   		vim.keymap.set("n", "za", "za", { silent = true }) -- toggle fold
-  		vim.keymap.set("n", "zA", "zA", { silent = true }) -- toggle fold recursively
+      -- Cursor folds
+      vim.keymap.set("n", "za", "za", { silent = true }) -- toggle fold
+      vim.keymap.set("n", "zA", "zA", { silent = true }) -- toggle fold recursively
 
-  		vim.keymap.set("n", "q", function()
-  			local winid = require("ufo").peekFoldedLinesUnderCursor()
-  			if not winid then
-  				vim.lsp.buf.hover()
-  			end
-  		end)
-  	end,
+      vim.keymap.set("n", "q", function()
+        local winid = require("ufo").peekFoldedLinesUnderCursor()
+        if not winid then
+          vim.lsp.buf.hover()
+        end
+      end)
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -96,9 +96,9 @@ local plugins = {
   ft = "go",
   dependencies = {
     "nvim-lua/plenary.nvim",
-		"nvim-lua/popup.nvim",
-		"nvim-telescope/telescope.nvim",
-		"nvim-treesitter/nvim-treesitter",
+    "nvim-lua/popup.nvim",
+    "nvim-telescope/telescope.nvim",
+    "nvim-treesitter/nvim-treesitter",
   },
   config = function()
     require("telescope").load_extension("goimpl")

@@ -30,7 +30,9 @@ local plugins = {
 
       -- Global folds
       vim.keymap.set("n", "zr", require("ufo").openAllFolds)
+      vim.keymap.set("n", "zR", require("ufo").openAllFolds)
       vim.keymap.set("n", "zm", require("ufo").closeAllFolds)
+      vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
       -- Cursor folds
       vim.keymap.set("n", "za", "za", { silent = true }) -- toggle fold

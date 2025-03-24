@@ -7,7 +7,7 @@ local util = require "lspconfig/util"
 lspconfig.gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = {"gopls"},
+  cmd = { "gopls" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
   root_dir = util.root_pattern("go.work", "go.mod", ".git"),
   settings = {
@@ -19,4 +19,10 @@ lspconfig.gopls.setup {
       },
     },
   },
+}
+lspconfig.sqlls.setup {
+  cmd = { "/usr/local/bin/sql-language-server", "up", "--method", "stdio" },
+  filetypes = { "sql" },
+  root_dir = util.root_pattern("sql"),
+  settings = {}
 }

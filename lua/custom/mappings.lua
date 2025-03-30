@@ -60,4 +60,14 @@ M.goimpl = {
   }
 }
 
+M.noice = {
+  plugin = false,
+  n = {
+    ["<leader>nh"] = {
+      "<cmd> Noice pick <CR>",
+      "Show notification history"
+    }
+  }
+}
+
 return M

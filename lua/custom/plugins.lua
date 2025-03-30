@@ -1,5 +1,32 @@
 local plugins = {
   {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    config = function(_, _)
+      require("noice").setup({
+        lsp = {
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          },
+        },
+        presets = {
+          bottom_search = true,         -- use a classic bottom cmdline for search
+          command_palette = true,       -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false,       -- add a border to hover docs and signature help
+        },
+      })
+      require("telescope").load_extension("noice")
+    end
+  },
+  {
     "kevinhwang91/nvim-ufo",
     dependencies = {
       "kevinhwang91/promise-async",
@@ -38,7 +65,7 @@ local plugins = {
       vim.keymap.set("n", "za", "za", { silent = true }) -- toggle fold
       vim.keymap.set("n", "zA", "zA", { silent = true }) -- toggle fold recursively
 
-      vim.keymap.set("n", "q", function()
+      vim.keymap.set("n", "Q", function()
         local winid = require("ufo").peekFoldedLinesUnderCursor()
         if not winid then
           vim.lsp.buf.hover()
@@ -51,6 +78,9 @@ local plugins = {
     opts = {
       ensure_installed = {
         "gopls",
+        "gitui",
+        "lua-language-server",
+        "stylua",
       },
     },
   },
@@ -94,16 +124,18 @@ local plugins = {
       vim.cmd [[silent! GoInstallDeps]]
     end,
   },
-  "edolphin-ydf/goimpl.nvim",
-  ft = "go",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-lua/popup.nvim",
-    "nvim-telescope/telescope.nvim",
-    "nvim-treesitter/nvim-treesitter",
-  },
-  config = function()
-    require("telescope").load_extension("goimpl")
-  end
+  {
+    "edolphin-ydf/goimpl.nvim",
+    ft = "go",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-lua/popup.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("telescope").load_extension("goimpl")
+    end
+  }
 }
 return plugins

@@ -1,4 +1,5 @@
 local plugins = {
+
   {
     "sphamba/smear-cursor.nvim",
     event = "VeryLazy",

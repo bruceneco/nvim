@@ -1,5 +1,5 @@
 local plugins = {
-
+  require("custom.configs.snacks"),
   {
     "sphamba/smear-cursor.nvim",
     event = "VeryLazy",

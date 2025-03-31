@@ -56,7 +56,7 @@ local options = {
   renderer = {
     root_folder_label = false,
     highlight_git = true,
-    highlight_opened_files = "always",
+    -- highlight_opened_files = "always",
 
     indent_markers = {
       enable = false,
@@ -65,7 +65,7 @@ local options = {
     icons = {
       show = {
         file = true,
-        folder = true,
+        folder = false,
         folder_arrow = true,
         git = false,
       },

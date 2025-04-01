@@ -1,4 +1,4 @@
-local RIGHT_PANE_WIDTH = 100
+local RIGHT_PANE_WIDTH = 50
 local dashboardOpts = {
   sections = {
     { section = "header" },

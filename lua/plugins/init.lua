@@ -61,6 +61,7 @@ local default_plugins = {
   },
 
   {
+    enabled = false,
     "lukas-reineke/indent-blankline.nvim",
     version = "2.20.7",
     event = "User FilePost",

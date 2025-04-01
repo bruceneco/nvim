@@ -1,4 +1,13 @@
 local M = {}
+M.persisted = {
+  plugin = false,
+  n = {
+    ["<leader>s"] = {
+      "<cmd> Telescope persisted <CR>",
+      "Telescope Sessions"
+    }
+  }
+}
 
 M.dap = {
   plugin = true,

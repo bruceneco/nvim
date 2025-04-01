@@ -7,7 +7,7 @@ local plugins = {
     config = function(_, opts)
       require("persisted").setup(opts)
       require("telescope").load_extension("persisted")
-    end
+    end,
   },
   {
     "folke/noice.nvim",

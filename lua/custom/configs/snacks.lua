@@ -1,4 +1,3 @@
-local RIGHT_PANE_WIDTH = 50
 local dashboardOpts = {
   sections = {
     { section = "header" },
@@ -27,20 +26,8 @@ local dashboardOpts = {
           end,
           key = "n",
           icon = " ",
-          height = 15,
-          width = RIGHT_PANE_WIDTH,
+          height = 12,
           enabled = true,
-        },
-        {
-          title = "Open Issues",
-          cmd = "gh issue list -L 3",
-          key = "i",
-          action = function()
-            vim.fn.jobstart("gh issue list --web", { detach = true })
-          end,
-          icon = " ",
-          height = 7,
-          width = RIGHT_PANE_WIDTH,
         },
         {
           icon = " ",
@@ -51,14 +38,12 @@ local dashboardOpts = {
             vim.fn.jobstart("gh pr list --web", { detach = true })
           end,
           height = 7,
-          width = RIGHT_PANE_WIDTH,
         },
         {
           icon = " ",
           title = "Git Status",
           cmd = "git --no-pager diff --stat -B -M -C",
           height = 10,
-          width = RIGHT_PANE_WIDTH,
         },
       }
       return vim.tbl_map(function(cmd)

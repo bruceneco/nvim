@@ -21,13 +21,13 @@ local dashboardOpts = {
       local cmds = {
         {
           title = "Notifications",
-          cmd = "gh notify -s -a -n10",
+          cmd = "gh notify -s -a -n5",
           action = function()
             vim.ui.open("https://github.com/notifications")
           end,
           key = "n",
           icon = " ",
-          height = 20,
+          height = 15,
           width = RIGHT_PANE_WIDTH,
           enabled = true,
         },

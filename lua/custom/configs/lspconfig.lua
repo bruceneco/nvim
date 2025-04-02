@@ -15,6 +15,7 @@ lspconfig.gopls.setup {
       completeUnimported = true,
       usePlaceholders = false,
       analyses = {
+        fillstruct = true,
         unusedparams = true,
       },
     },

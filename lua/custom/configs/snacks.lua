@@ -76,7 +76,13 @@ return {
     statuscolumn = { enabled = true },
     words = { enabled = false },
     dim = { enabled = true },
-    dashboard = dashboardOpts
+    dashboard = dashboardOpts,
+    notify = { enabled = true },
+    notifier = {
+      level = vim.log.levels.TRACE,
+      enabled = true,
+      style = "compact"
+    }
   },
   keys = {
     -- EXTRA_KEYS

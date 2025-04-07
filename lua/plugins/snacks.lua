@@ -20,8 +20,6 @@ return {
     },
   },
   keys = {
-    -- EXTRA_KEYS
-    -- Other
     {
       "<leader>.",
       function()
@@ -72,6 +70,14 @@ return {
         Snacks.words.jump(-vim.v.count1)
       end,
       desc = "Prev Reference",
+      mode = { "n", "t" },
+    },
+    {
+      "<leader>nh",
+      function()
+        Snacks.notifier.show_history()
+      end,
+      desc = "Show notification history",
       mode = { "n", "t" },
     },
   },

@@ -1,7 +1,16 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = "BufReadPre",
-  opts = {},
+  opts = {
+    current_line_blame = true,
+    current_line_blame_opts = {
+      delay = 500,
+      virt_text_pos = "eol",
+    },
+    linehl = false,
+    numhl = true,
+    word_diff = false,
+  },
   setup = function(_, opts)
     require("gitsigns").setup(opts)
   end,

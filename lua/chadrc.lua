@@ -23,6 +23,7 @@ M.nvdash = {
     { txt = "󰈭  Find Word", keys = "fw", cmd = "Telescope live_grep" },
     { txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
     { txt = "  Mappings", keys = "ch", cmd = "NvCheatsheet" },
+    { txt = "󰿅  Quit", keys = "q", cmd = ":q" },
     { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
 
     {

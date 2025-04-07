@@ -12,7 +12,4 @@ return {
       "rust-analyzer",
     },
   },
-  setup = function(_, opts)
-    require("mason").setup(opts)
-  end,
 }

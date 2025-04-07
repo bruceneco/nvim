@@ -1,17 +1,18 @@
 return {
   "williamboman/mason.nvim",
   opts = {
+    PATH = "append",
     ensure_installed = {
       "lua-language-server",
       "stylua",
 
-      -- go stuff
       "gopls",
       "goimports",
 
-      -- bash stuff
-      "shfmt",
-      "shellcheck",
+      "rust-analyzer",
     },
   },
+  setup = function(_, opts)
+    require("mason").setup(opts)
+  end,
 }

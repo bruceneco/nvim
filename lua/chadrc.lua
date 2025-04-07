@@ -43,7 +43,7 @@ M.ui = {
   tabufline = {
     enabled = true,
     lazyload = true,
-    order = { "treeOffset", "buffers" },
+    order = { "buffers" },
   },
   statusline = {
     theme = "minimal",

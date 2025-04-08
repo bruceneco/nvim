@@ -21,6 +21,7 @@ M.base46 = {
 }
 
 M.nvdash = {
+  header = {},
   load_on_startup = true,
   buttons = {
     { txt = "  Projects", keys = "p", cmd = "Telescope session-lens" },

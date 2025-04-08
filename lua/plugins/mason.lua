@@ -10,6 +10,7 @@ return {
       "goimports",
 
       "rust-analyzer",
+      "delve",
     },
   },
 }

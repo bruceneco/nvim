@@ -23,7 +23,7 @@ M.base46 = {
 M.nvdash = {
   load_on_startup = true,
   buttons = {
-    { txt = "  Projects", keys = "p", cmd = "Telescope persisted" },
+    { txt = "  Projects", keys = "p", cmd = "Telescope session-lens" },
     { txt = "  Find File", keys = "ff", cmd = "Telescope find_files" },
     { txt = "  Recent Files", keys = "fo", cmd = "Telescope oldfiles" },
     { txt = "󰈭  Find Word", keys = "fw", cmd = "Telescope live_grep" },

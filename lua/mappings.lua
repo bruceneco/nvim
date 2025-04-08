@@ -12,3 +12,11 @@ for i = 1, 9, 1 do
     vim.api.nvim_set_current_buf(vim.t.bufs[i])
   end)
 end
+
+map("n", "]d", function()
+  vim.diagnostic.goto_next { float = true }
+end, { desc = "Go to next diagnostic", noremap = true, silent = true })
+
+map("n", "[d", function()
+  vim.diagnostic.goto_next { float = true }
+end, { desc = "Go no previous diagnostic", noremap = true, silent = true })

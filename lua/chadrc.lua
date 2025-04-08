@@ -8,6 +8,12 @@ local M = {}
 M.base46 = {
   theme = "flexoki",
   transparency = true,
+  hl_add = {
+    St_relativepath = {
+      bg = "one_bg",
+      fg = "grey_fg2",
+    },
+  },
   hl_override = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
@@ -39,6 +45,11 @@ M.nvdash = {
     { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
   },
 }
+
+local stbufnr = function()
+  return vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
+end
+
 M.ui = {
   tabufline = {
     enabled = true,
@@ -46,8 +57,21 @@ M.ui = {
     order = { "buffers" },
   },
   statusline = {
-    theme = "minimal",
+    theme = "default",
     separator_style = "round",
+    order = { "mode", "relativepath", "file", "git", "%=", "lsp_msg", "%=", "lsp", "cwd" },
+    modules = {
+      relativepath = function()
+        vim.cmd "highlight St_relativepath gui=italic"
+        local path = vim.api.nvim_buf_get_name(stbufnr())
+
+        if path == "" then
+          return ""
+        end
+
+        return "  %#St_relativepath#" .. vim.fn.expand "%:.:h" .. "/"
+      end,
+    },
   },
 }
 

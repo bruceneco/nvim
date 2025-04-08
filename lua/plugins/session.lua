@@ -13,8 +13,8 @@ return {
       load_on_setup = false,
       previewer = false,
       mappings = {
-        delete_session = { { "i", "n" }, "<C-D>" },
-        alternate_session = { { "i", "n" }, "<C-S>" },
+        delete_session = { "i", "<C-D>" },
+        alternate_session = { "i", "<C-S>" },
       },
       theme_conf = {
         border = true,

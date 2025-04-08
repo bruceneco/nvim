@@ -4,6 +4,7 @@ require "nvchad.options"
 
 local o = vim.o
 o.cursorlineopt = "both" -- to enable cursorline!
+o.relativenumber = true -- enable relative number by default
 
 vim.diagnostic.config {
   virtual_text = true,

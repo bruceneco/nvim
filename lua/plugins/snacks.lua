@@ -5,19 +5,15 @@ return {
   lazy = false,
   opts = {
     indent = { enabled = true },
-    input = { enabled = true },
+    input = { enabled = false },
     quickfile = { enabled = false },
     scope = { enabled = true },
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = false },
     dim = { enabled = true },
-    notify = { enabled = true },
-    notifier = {
-      level = vim.log.levels.TRACE,
-      enabled = true,
-      style = "compact",
-    },
+    notify = { enabled = false },
+    notifier = { enabled = false },
   },
   keys = {
     {

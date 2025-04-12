@@ -1,49 +1,48 @@
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
+local config = require "nvchad.configs.lspconfig"
+local root = require("lspconfig").util.root_pattern
 
--- EXAMPLE
-local servers = { "lua_ls" }
-local nvlsp = require "nvchad.configs.lspconfig"
+local servers = {
+  lua_ls = {},
+  rust_analyzer = {
+    filetypes = { "rust" },
+    root_dir = root "Cargo.toml",
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          allFeatures = true,
+        },
+      },
+    },
+  },
+  gopls = {
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    root_dir = root("go.work", "go.mod", ".git"),
+    settings = {
+      gopls = {
+        completeUnimported = true,
+        usePlaceholders = false,
+        analyses = {
+          fillstruct = true,
+          unusedparams = true,
+        },
+      },
+    },
+  },
+  elixirls = {
+    cmd = { "elixir-ls" },
+    filetypes = { "elixir" },
+  },
+}
 
 -- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-  }
+for name, opts in pairs(servers) do
+  opts.on_init = config.on_init
+  opts.on_attach = config.on_attach
+  opts.capabilities = config.capabilities
+
+  require("lspconfig")[name].setup(opts)
 end
-
-lspconfig.rust_analyzer.setup {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
-  filetypes = { "rust" },
-  root_dir = lspconfig.util.root_pattern "Cargo.toml",
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = {
-        allFeatures = true,
-      },
-    },
-  },
-}
-
-lspconfig.gopls.setup {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
-  cmd = { "gopls" },
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
-  settings = {
-    gopls = {
-      completeUnimported = true,
-      usePlaceholders = false,
-      analyses = {
-        fillstruct = true,
-        unusedparams = true,
-      },
-    },
-  },
-}

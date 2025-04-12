@@ -3,6 +3,7 @@ return {
   event = "BufReadPre",
   opts = {
     ensure_installed = {
+      "elixir",
       "vim",
       "lua",
       "markdown",

@@ -60,17 +60,44 @@ M.ui = {
   statusline = {
     theme = "default",
     separator_style = "round",
-    order = { "mode", "relativepath", "file", "git", "%=", "lsp_msg", "%=", "lsp", "cwd" },
+    order = { "mode", "relativepath", "cfile", "git", "%=", "lsp_msg", "%=", "lsp", "cwd" },
     modules = {
       relativepath = function()
         vim.cmd "highlight St_relativepath gui=italic"
         local path = vim.api.nvim_buf_get_name(stbufnr())
 
-        if path == "" then
+        if path == "" or vim.startswith(path, "term:") then
           return ""
         end
 
-        return "  %#St_relativepath#" .. vim.fn.expand "%:.:h" .. "/"
+        local relpath = vim.fn.expand "%:.:h"
+        if relpath == "." or relpath == "./" then
+          return ""
+        end
+
+        return " %#St_relativepath#" .. relpath .. "/"
+      end,
+      cfile = function()
+        local ignored_files = {
+          "Empty",
+          "NvimTree_1",
+          "TelescopePrompt",
+          "TelescopeResults",
+          "packer",
+          "lazy",
+          "lazygit",
+          "help",
+          "zsh",
+        }
+        local utils = require "nvchad.stl.utils"
+
+        local sep_r = utils.separators.round.right
+        local x = utils.file()
+        if vim.tbl_contains(ignored_files, x[2]) then
+          return "%#St_file_sep#" .. sep_r
+        end
+        local name = " " .. x[2] .. " "
+        return "%#St_file# " .. x[1] .. name .. "%#St_file_sep#" .. sep_r
       end,
     },
   },

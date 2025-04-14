@@ -2,8 +2,9 @@ return {
   "rmagatti/auto-session",
   event = "VimEnter",
   keys = {
-    { "<leader>ws", "<cmd>SessionSearch<cr>", desc = "Session search" },
-    { "<leader>wd", "<cmd>SessionDelete<cr>", desc = "Session delete" },
+    { "<leader>ss", "<cmd>SessionSearch<cr>", desc = "Search session" },
+    { "<leader>sd", "<cmd>SessionDelete<cr>", desc = "Delete session" },
+    { "<leader>sr", "<cmd>SessionSave<cr>", desc = "Register session" },
   },
   opts = {
     suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/", "~/.config" },
@@ -13,8 +14,7 @@ return {
       load_on_setup = false,
       previewer = false,
       mappings = {
-        delete_session = { "i", "<C-D>" },
-        alternate_session = { "i", "<C-S>" },
+        delete_session = { "n", "d" },
       },
       theme_conf = {
         border = true,

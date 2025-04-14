@@ -3,7 +3,7 @@ return {
   opts = {
     PATH = "append",
     ensure_installed = {
-      "lexical",
+      "elixir-ls",
       "lua-language-server",
       "stylua",
 

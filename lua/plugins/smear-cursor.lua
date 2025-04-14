@@ -17,13 +17,12 @@ return {
     scroll_buffer_space = true,
 
     -- Set to `true` if your font supports legacy computing symbols (block unicode symbols).
+    legacy_computing_symbols_support = true,
     -- Smears will blend better on all backgrounds.
     transparent_bg_fallback_color = "#303030",
-    
-    legacy_computing_symbols_support = true,
 
     -- Smear cursor in insert mode.
     -- See also `vertical_bar_cursor_insert_mode` and `distance_stop_animating_vertical_bar`.
-    smear_insert_mode = true,
+    smear_insert_mode = false,
   },
 }

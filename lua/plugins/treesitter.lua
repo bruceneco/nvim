@@ -3,11 +3,8 @@ return {
   event = "BufReadPre",
   opts = {
     ensure_installed = {
-      "vim",
       "lua",
       "markdown",
-      "markdown_inline",
-      "bash",
       "go",
       "gomod",
       "gosum",

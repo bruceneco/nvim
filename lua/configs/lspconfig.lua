@@ -32,10 +32,6 @@ local servers = {
       },
     },
   },
-  elixirls = {
-    cmd = { "elixir-ls" },
-    filetypes = { "elixir" },
-  },
 }
 
 -- lsps with default config

@@ -1,6 +1,6 @@
 return {
   "rmagatti/auto-session",
-  event = "VimEnter",
+  lazy = false,
   keys = {
     { "<leader>ss", "<cmd>SessionSearch<cr>", desc = "Search session" },
     { "<leader>sd", "<cmd>SessionDelete<cr>", desc = "Delete session" },
@@ -8,7 +8,8 @@ return {
   },
   opts = {
     suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/", "~/.config" },
-    auto_restore = false,
+    cwd_change_handling = true,
+    auto_restore = true,
     use_git_branch = true,
     session_lens = {
       load_on_setup = false,

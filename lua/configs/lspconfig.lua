@@ -5,18 +5,6 @@ local config = require "nvchad.configs.lspconfig"
 local root = require("lspconfig").util.root_pattern
 
 local servers = {
-  lua_ls = {},
-  rust_analyzer = {
-    filetypes = { "rust" },
-    root_dir = root "Cargo.toml",
-    settings = {
-      ["rust-analyzer"] = {
-        cargo = {
-          allFeatures = true,
-        },
-      },
-    },
-  },
   gopls = {
     cmd = { "gopls" },
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -32,6 +20,15 @@ local servers = {
       },
     },
   },
+  ts_ls = {
+    cmd = { "typescript-language-server", "--stdio" },
+    init_options = {
+      preferences = {
+        disableSuggestions = true,
+      },
+    },
+  },
+  eslint = {},
 }
 
 -- lsps with default config

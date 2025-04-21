@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "flexoki",
+  theme = "catppuccin",
   transparency = true,
   hl_add = {
     St_relativepath = {

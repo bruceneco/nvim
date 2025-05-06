@@ -3,7 +3,6 @@ local WIDTH_RATIO = 0.3
 
 return {
   "nvim-tree/nvim-tree.lua",
-  lazy = false,
   priority = 1000,
   opts = {
     sync_root_with_cwd = true,

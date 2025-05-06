@@ -28,7 +28,16 @@ local servers = {
       },
     },
   },
-  eslint = {},
+  eslint = {
+    root_dir = root(".eslintrc.js", ".eslintrc"),
+    settings = {
+      workingDirectory = {
+        mode = "auto",
+      },
+    },
+  },
+  docker_compose_language_service = {},
+  dockerls = {},
 }
 
 -- lsps with default config

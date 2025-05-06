@@ -10,4 +10,37 @@ return {
   setup = function(_, opts)
     require("telescope").setup(opts)
   end,
+  keys = {
+
+    {
+      "gd",
+      "<CMD>Telescope lsp_definitions<CR>",
+      { desc = "Go to definition" },
+    },
+    {
+      "gi",
+      "<CMD>Telescope lsp_implementations<CR>",
+      { desc = "Go to implementation" },
+    },
+    {
+      "gr",
+      "<CMD>Telescope lsp_references<CR>",
+      { desc = "Go to references" },
+    },
+    {
+      "gt",
+      "<CMD>Telescope lsp_type_definitions<CR>",
+      { desc = "Go to type definitions" },
+    },
+    {
+      "gs",
+      "<CMD>Telescope lsp_document_symbols<CR>",
+      { desc = "Go to document symbols" },
+    },
+    {
+      "gws",
+      "<CMD>Telescope lsp_workspace_symbols<CR>",
+      { desc = "Go to workspace symbols" },
+    },
+  },
 }

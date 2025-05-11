@@ -8,7 +8,6 @@
   "conform.nvim": { "branch": "master", "commit": "374aaf384e2e841607b8e2fe63fa3ad01d111c91" },
   "copilot.lua": { "branch": "master", "commit": "2fe34db04570f6c47db0b752ca421a49b7357c03" },
   "cyberdream.nvim": { "branch": "main", "commit": "8407e80415aebd6b052773d751dda7cd9cfc6835" },
-  "dial.nvim": { "branch": "master", "commit": "2c7e2750372918f072a20f3cf754d845e143d7c9" },
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
   "eldritch.nvim": { "branch": "master", "commit": "adedead3423c58cc2e2ebf30001fe4055ad0e416" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },

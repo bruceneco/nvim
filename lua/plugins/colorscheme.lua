@@ -1,7 +1,7 @@
 return {
   {
     "eldritch-theme/eldritch.nvim",
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {
       transparent = true,
@@ -14,7 +14,7 @@ return {
   {
     "rebelot/kanagawa.nvim",
     name = "kanagawa",
-    lazy = false,
+    lazy = true,
     opts = {},
   },
   {
@@ -33,7 +33,7 @@ return {
   },
   {
     "catppuccin/nvim",
-    lazy = false,
+    lazy = true,
     name = "catppuccin",
     opts = {
       flavour = "mocha",

@@ -3,9 +3,10 @@ return {
   { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
   {
     "neovim/nvim-lspconfig",
-    opts = function()
+    opts = function(_, opts)
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = { "<C-K>", false, mode = { "i" } }
+      keys[#keys + 1] = { "<C-k>", false, mode = { "i" } }
+      return opts
     end,
   },
   {
@@ -40,6 +41,7 @@ return {
         nerd_font_variant = "mono",
       },
       completion = {
+
         accept = {
           -- experimental auto-brackets support
           auto_brackets = {
@@ -47,6 +49,8 @@ return {
           },
         },
         menu = {
+          border = "rounded",
+
           draw = {
             treesitter = { "lsp" },
           },
@@ -54,14 +58,19 @@ return {
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 200,
+          window = {
+            border = "rounded",
+          },
         },
         ghost_text = {
           enabled = vim.g.ai_cmp,
+          show_without_selection = false,
+          show_with_selection = true,
         },
       },
 
       -- experimental signature help support
-      -- signature = { enabled = true },
+      signature = { enabled = false },
 
       sources = {
         -- adding any nvim-cmp sources here will enable them
@@ -71,7 +80,9 @@ return {
       },
 
       cmdline = {
-        enabled = false,
+        enabled = true,
+        keymap = { preset = "inherit" },
+        completion = { menu = { auto_show = true } },
       },
 
       keymap = {

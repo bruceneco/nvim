@@ -1,4 +1,50 @@
 return {
+  {
+    "folke/persistence.nvim",
+    enabled = false,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = function(_, opts)
+      opts.defaults = opts.defaults or {}
+      opts.defaults.sorting_strategy = "ascending"
+      opts.defaults.layout_config = opts.defaults.layout_config or {}
+      opts.defaults.layout_config.horizontal = opts.defaults.layout_config.horizontal or {}
+      opts.defaults.layout_config.horizontal.prompt_position = "top"
+      opts.extensions = {
+        persisted = { layout_config = { width = 0.4, height = 0.5 } },
+      }
+      return opts
+    end,
+    config = function(_, opts)
+      require("telescope").setup(opts)
+      require("telescope").load_extension("persisted")
+    end,
+  },
+  {
+    "olimorris/persisted.nvim",
+    event = "BufReadPre",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
+    keys = {
+      { "<space>qs", "<CMD>SessionSave<CR><CMD>Telescope persisted<CR>", desc = "Select session" },
+      { "<space>qd", "<CMD>SessionDelete<CR><CMD>qa<CR>", desc = "Delete session" },
+      { "<space>ql", "<CMD>SessionLoadLast<CR>", desc = "Load last session" },
+    },
+    opts = {
+      use_git_branch = true,
+      ignored_dirs = {
+        { "~/", exact = true },
+        { "~/Projects", exact = true },
+        { "~/projects", exact = true },
+        { "~/.config", exact = true },
+      },
+    },
+    config = function(_, opts)
+      require("persisted").setup(opts)
+    end,
+  },
   { "lewis6991/gitsigns.nvim", opts = {
     current_line_blame = true,
   } },

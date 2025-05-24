@@ -12,6 +12,8 @@ return {
   },
   {
     "saghen/blink.cmp",
+    lazy = true,
+    event = "InsertEnter",
     dependencies = {
       "rafamadriz/friendly-snippets",
       -- add blink.compat to dependencies
@@ -22,7 +24,6 @@ return {
         version = not vim.g.lazyvim_blink_main and "*",
       },
     },
-    event = "InsertEnter",
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config

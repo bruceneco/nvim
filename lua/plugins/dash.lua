@@ -14,7 +14,7 @@ return {
               icon = " ",
               key = "s",
               desc = "Restore Session",
-              action = ":lua require('persistence').select()",
+              action = "<CMD>SessionPurgeOrphaned<CR><CMD>SessionSearch<CR>",
             },
             { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
             { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },

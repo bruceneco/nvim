@@ -59,11 +59,15 @@ return {
             end,
           },
           { title = "Spectre", ft = "spectre_panel", size = { height = 0.4 } },
-          { title = "Neotest Output", ft = "neotest-output-panel", size = { height = 15 } },
+          {
+            title = "Neotest Output",
+            ft = "neotest-output-panel",
+            size = { height = 15 },
+          },
         },
         left = {
-          { title = "Filesystem", ft = "neo-tree", pinned = true },
-          { title = "Neotest Summary", ft = "neotest-summary", pinned = true },
+          { title = "Filesystem", ft = "neo-tree", pinned = true, open = "Neotree focus" },
+          { title = "Neotest Summary", ft = "neotest-summary", pinned = true, open = "Neotest summary" },
         },
         right = {
           { title = "Grug Far", ft = "grug-far", size = { width = 0.4 } },

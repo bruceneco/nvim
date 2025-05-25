@@ -64,6 +64,14 @@ return {
             ft = "neotest-output-panel",
             size = { height = 15 },
           },
+          {
+            title = "Overseer",
+            ft = "", -- overseer terminals typically have no filetype
+            filter = function(buf, win)
+              return vim.b[buf].overseer_task and vim.api.nvim_win_get_config(win).relative == ""
+            end,
+            size = { height = 0.3 },
+          },
         },
         left = {
           { title = "Filesystem", ft = "neo-tree", pinned = true, open = "Neotree focus" },

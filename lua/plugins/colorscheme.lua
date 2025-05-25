@@ -24,11 +24,31 @@ return {
       transparent = true,
     },
   },
-  { "oxfist/night-owl.nvim", lazy = true, opts = { transparent_background = true } },
+  {
+    "oxfist/night-owl.nvim",
+    lazy = true,
+    priority = 1000,
+    config = function()
+      require("night-owl").setup({
+        transparent_background = false,
+      })
+      vim.cmd.colorscheme("night-owl")
+    end,
+  },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "cyberdream",
+      colorscheme = "tokyonight",
+    },
+  },
+  {
+    "folke/tokyonight.nvim",
+    opts = {
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
   },
   {

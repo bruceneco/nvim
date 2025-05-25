@@ -68,7 +68,7 @@ return {
           },
         },
         ghost_text = {
-          enabled = vim.g.ai_cmp,
+          enabled = false, -- vim.g.ai_cmp,
           show_without_selection = false,
           show_with_selection = true,
         },

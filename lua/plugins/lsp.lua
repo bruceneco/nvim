@@ -1,7 +1,4 @@
 return {
-  { "nvim-treesitter/nvim-treesitter", lazy = true, event = "BufRead" },
-  { "nvim-treesitter/nvim-treesitter-context", lazy = true, event = "BufRead" },
-  { "nvim-treesitter/nvim-treesitter-textobjects", lazy = true, event = "BufRead" },
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)

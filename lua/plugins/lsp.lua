@@ -75,7 +75,14 @@ return {
       },
 
       -- experimental signature help support
-      signature = { enabled = false },
+      signature = {
+        enabled = true,
+        window = {
+          border = "rounded",
+          max_height = 10,
+          max_width = 80,
+        },
+      },
 
       sources = {
         -- adding any nvim-cmp sources here will enable them

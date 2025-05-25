@@ -29,6 +29,13 @@ return {
           return LazyVim.cmp.expand(snippet)
         end,
       },
+      fuzzy = {
+        use_frecency = true,
+        use_proximity = true,
+        prebuilt_binaries = {
+          download = true,
+        },
+      },
       appearance = {
         -- sets the fallback highlight groups to nvim-cmp's highlight groups
         -- useful for when your theme doesn't support blink.cmp

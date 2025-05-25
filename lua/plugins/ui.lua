@@ -63,10 +63,12 @@ return {
         },
         left = {
           { title = "Filesystem", ft = "neo-tree", pinned = true },
-          { title = "Neotest Summary", ft = "neotest-summary" },
+          { title = "Neotest Summary", ft = "neotest-summary", pinned = true },
         },
         right = {
           { title = "Grug Far", ft = "grug-far", size = { width = 0.4 } },
+          { title = "Outline", ft = "Outline", size = { width = 0.25 }, open = "Outline", pinned = true },
+          { title = "Copilot", ft = "copilot-chat", size = { width = 0.4 }, pinned = true, open = "CopilotChat" },
         },
         keys = {
           -- increase width

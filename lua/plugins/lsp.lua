@@ -1,11 +1,48 @@
+local root = require("lspconfig").util.root_pattern
 return {
+  {
+    "mason-org/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "eslint_d",
+        "prettierd",
+        "sqlfluff",
+      },
+    },
+  },
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = { "<C-k>", false, mode = { "i" } }
       opts.diagnostics.float = { border = "rounded" }
+
+      opts.servers.vtsls = { enabled = false }
+      opts.servers.ts_ls = {
+        root_dir = root("package.json"),
+      }
       return opts
+    end,
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      opts.root_dir =
+        require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "package.json", "Makefile", ".git")
+      opts.sources = vim.list_extend(opts.sources or {}, {
+        nls.builtins.formatting.sqlfluff.with({
+          extra_args = { "--dialect", "postgres" },
+        }),
+        nls.builtins.diagnostics.sqlfluff.with({
+          extra_args = { "--dialect", "postgres" },
+        }),
+
+        nls.builtins.formatting.prettierd,
+        require("none-ls.diagnostics.eslint_d"),
+        require("none-ls.formatting.eslint_d"),
+      })
     end,
   },
   {

@@ -74,7 +74,6 @@ return {
           },
         },
         left = {
-          { title = "Filesystem", ft = "neo-tree", pinned = true, open = "Neotree focus" },
           { title = "Neotest Summary", ft = "neotest-summary", pinned = true, open = "Neotest summary" },
         },
         right = {

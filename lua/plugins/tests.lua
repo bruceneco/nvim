@@ -15,6 +15,7 @@ return {
         adapters = {
           require("neotest-jest")({
             jestCommand = "npm run test --",
+            jestConfigFile = "jest.config.json",
             cwd = function()
               return vim.fn.getcwd()
             end,

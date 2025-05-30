@@ -1,6 +1,7 @@
 return {
   {
     "mxsdev/nvim-dap-vscode-js",
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "mfussenegger/nvim-dap",
     },

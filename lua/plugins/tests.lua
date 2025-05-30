@@ -1,6 +1,7 @@
 return {
   {
     "mxsdev/nvim-dap-vscode-js",
+    lazy = true,
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "mfussenegger/nvim-dap",
@@ -43,6 +44,7 @@ return {
   },
   {
     "nvim-neotest/neotest",
+    lazy = true,
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "nvim-neotest/nvim-nio",

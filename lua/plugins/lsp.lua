@@ -40,8 +40,12 @@ return {
         }),
 
         nls.builtins.formatting.prettierd,
-        require("none-ls.diagnostics.eslint_d"),
-        require("none-ls.formatting.eslint_d"),
+        require("none-ls.diagnostics.eslint_d").with({
+          extra_args = { "--no-ignore" },
+        }),
+        require("none-ls.formatting.eslint_d").with({
+          extra_args = { "--no-ignore" },
+        }),
       })
     end,
   },

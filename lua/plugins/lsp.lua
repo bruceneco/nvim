@@ -1,9 +1,27 @@
-local root = require("lspconfig").util.root_pattern
+local function get_config_in_cwd(patterns)
+  local cwd = vim.fn.getcwd()
+
+  for _, pattern in ipairs(patterns) do
+    -- Use globpath with hidden = 1 to include hidden files
+    local files = vim.fn.globpath(cwd, pattern, false, true, 1)
+    if #files > 0 then
+      return files[1] -- return first match
+    end
+  end
+
+  return nil
+end
+
+local eslint_glob = { "*eslint*", ".*eslint*" }
+local biome_glob = { "*biome*", ".*biome" }
+local root = require("lspconfig.util").root_pattern
+
 return {
   {
     "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
+        "biome",
         "eslint_d",
         "prettierd",
         "sqlfluff",
@@ -12,36 +30,83 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      opts.diagnostics.float = { border = "rounded" }
-
-      opts.servers.vtsls = { enabled = false }
-      opts.servers.ts_ls = {
-        root_dir = root("tsconfig.json"),
-      }
-      opts.servers.eslint = {
-        root_dir = root(".eslintrc", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json", "package.json"),
-        settings = {
-          workingDirectory = { mode = "auto" },
+    lazy = true,
+    event = "BufReadPost",
+    opts = {
+      diagnostics = {
+        float = { border = "rounded" },
+      },
+      servers = {
+        vtsls = {
+          on_attach = function(client, _)
+            client.handlers["textDocument/publishDiagnostics"] = function() end
+          end,
+          root_dir = root("tsconfig.json"),
+          settings = {
+            typescript = {
+              diagnostics = {
+                enabled = false,
+              },
+              updateImportsOnFileMove = { enabled = "always" },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              inlayHints = {
+                enumMemberValues = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                variableTypes = { enabled = false },
+              },
+            },
+          },
         },
-      }
-      return opts
-    end,
+        eslint = {
+          root_dir = function(fname)
+            local cfg = get_config_in_cwd(eslint_glob)
+            if cfg then
+              return vim.fn.getcwd()
+            else
+              return nil
+            end
+          end,
+          -- workingDirectory = { mode = "" },
+        },
+        biome = {
+          root_dir = function(fname)
+            local cfg = get_config_in_cwd(biome_glob)
+            if cfg then
+              return vim.fn.getcwd()
+            else
+              return nil
+            end
+          end,
+        },
+      },
+    },
   },
   {
     "stevearc/conform.nvim",
     optional = true,
-    opts = function()
-      return {
-        formatters_by_ft = {
+    opts = {
+      ft_formatters = function()
+        local ft = {
           lua = { "stylua" },
           typescript = { "eslint_d" },
-          typescriptreact = { "eslint_d" },
+          javascript = { "eslint_d" },
           sql = { "sqlfluff" },
-        },
-        notify_no_formatters = false,
-      }
-    end,
+        }
+        if get_config_in_cwd(biome_glob) then
+          ft.typescript = { "biome" }
+          ft.javascript = { "biome" }
+          ft.json = { "biome" }
+          ft.jsonc = { "biome" }
+        end
+        return ft
+      end,
+      notify_no_formatters = false,
+    },
   },
   {
     "saghen/blink.cmp",

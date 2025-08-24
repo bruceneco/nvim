@@ -22,7 +22,13 @@ return {
     ---@type snacks.Config
     opts = {
       picker = {
+        hidden = true,
+        ignored = true,
         sources = {
+          files = {
+            hidden = true,
+            ignored = true,
+          },
           explorer = {
             actions = {
               bufadd = function(_, item)

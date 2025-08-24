@@ -13,3 +13,9 @@ vim.api.nvim_create_autocmd("User", {
     vim.cmd("bufdo bwipeout")
   end,
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#606060", bg = "NONE", italic = true })
+  end,
+})

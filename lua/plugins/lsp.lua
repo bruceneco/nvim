@@ -17,36 +17,30 @@ return {
 
       opts.servers.vtsls = { enabled = false }
       opts.servers.ts_ls = {
-        root_dir = root("package.json"),
+        root_dir = root("tsconfig.json"),
+      }
+      opts.servers.eslint = {
+        root_dir = root(".eslintrc", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json", "package.json"),
+        settings = {
+          workingDirectory = { mode = "auto" },
+        },
       }
       return opts
     end,
   },
   {
-    "nvimtools/none-ls.nvim",
-    dependencies = {
-      "nvimtools/none-ls-extras.nvim",
-    },
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      opts.root_dir =
-        require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "package.json", "Makefile", ".git")
-      opts.sources = vim.list_extend(opts.sources or {}, {
-        nls.builtins.formatting.sqlfluff.with({
-          extra_args = { "--dialect", "postgres" },
-        }),
-        nls.builtins.diagnostics.sqlfluff.with({
-          extra_args = { "--dialect", "postgres" },
-        }),
-
-        nls.builtins.formatting.prettierd,
-        require("none-ls.diagnostics.eslint_d").with({
-          extra_args = { "--no-ignore" },
-        }),
-        require("none-ls.formatting.eslint_d").with({
-          extra_args = { "--no-ignore" },
-        }),
-      })
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = function()
+      return {
+        formatters_by_ft = {
+          lua = { "stylua" },
+          typescript = { "eslint_d" },
+          typescriptreact = { "eslint_d" },
+          sql = { "sqlfluff" },
+        },
+        notify_no_formatters = false,
+      }
     end,
   },
   {

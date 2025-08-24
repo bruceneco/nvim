@@ -71,17 +71,7 @@ return {
               return nil
             end
           end,
-          -- workingDirectory = { mode = "" },
-        },
-        biome = {
-          root_dir = function(fname)
-            local cfg = get_config_in_cwd(biome_glob)
-            if cfg then
-              return vim.fn.getcwd()
-            else
-              return nil
-            end
-          end,
+          workingDirectory = { mode = "auto" },
         },
       },
     },
@@ -89,24 +79,19 @@ return {
   {
     "stevearc/conform.nvim",
     optional = true,
-    opts = {
-      ft_formatters = function()
-        local ft = {
-          lua = { "stylua" },
-          typescript = { "eslint_d" },
-          javascript = { "eslint_d" },
-          sql = { "sqlfluff" },
-        }
-        if get_config_in_cwd(biome_glob) then
-          ft.typescript = { "biome" }
-          ft.javascript = { "biome" }
-          ft.json = { "biome" }
-          ft.jsonc = { "biome" }
-        end
-        return ft
-      end,
-      notify_no_formatters = false,
-    },
+    opts = function(_, opts)
+      local ft = {
+        lua = { "stylua" },
+        typescript = { "biome", "eslint_d", "prettierd", stop_after_first = true },
+        javascript = { "biome", "eslint_d", "prettierd", stop_after_first = true },
+        json = { "biome", "prettierd", stop_after_first = true },
+        jsonc = { "biome", "prettierd", stop_after_first = true },
+        sql = { "sqlfluff" },
+      }
+      opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft or {}, ft)
+      opts.notify_no_formatters = false
+      return opts
+    end,
   },
   {
     "saghen/blink.cmp",

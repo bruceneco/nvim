@@ -12,7 +12,7 @@ return {
     config = function()
       require("auto-session").setup({
         suppressed_dirs = { "~/", "~/Projects", "~/projects", "~/Downloads", "/" },
-        auto_restore = false,
+        auto_restore = true,
         cwd_change_handling = false,
         auto_save = false,
         auto_delete_empty_sessions = false,

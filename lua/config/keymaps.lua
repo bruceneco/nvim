@@ -19,10 +19,6 @@ map("n", "<leader>gg", function()
 end, { desc = "LazyGit (Snacks)" })
 
 map("t", "<C-q>", "<C-\\><C-n>", { desc = "Exit terminal mode with C-q", noremap = true })
-map("t", "<C-k>", function()
-  vim.cmd.stopinsert()
-  vim.cmd.qa()
-end, { desc = "Exit terminal and quit Neovim/Claude" })
 
 map("n", "<leader>t1", function()
   vim.cmd("colorscheme catppuccin-mocha")

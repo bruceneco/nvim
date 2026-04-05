@@ -17,7 +17,12 @@ return {
         auto_save = false,
         auto_delete_empty_sessions = false,
         continue_restore_on_error = true,
+        log_level = nil,
         session_lens = {
+          picker = "snacks",
+          picker_opts = {
+            previewer = false,
+          },
           load_on_setup = false,
           previewer = false,
           theme_conf = { border = true },
@@ -52,7 +57,7 @@ return {
       {
         "<leader>qq",
         function()
-          close()
+          -- close()
           vim.cmd("SessionSave")
           vim.cmd("qa")
         end,
@@ -62,7 +67,7 @@ return {
       {
         "<leader>qs",
         function()
-          close()
+          -- close()
           vim.cmd("SessionSave")
           vim.cmd("SessionSearch")
         end,

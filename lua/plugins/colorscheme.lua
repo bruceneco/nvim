@@ -12,7 +12,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "cyberdream",
+      colorscheme = "tokyonight",
     },
   },
   {
@@ -28,8 +28,9 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    lazy = false,
+    priority = 1000,
     opts = {
-      transparent_background = true,
       integrations = {
         aerial = true,
         alpha = true,

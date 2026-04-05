@@ -1,20 +1,3 @@
-local function get_config_in_cwd(patterns)
-  local cwd = vim.fn.getcwd()
-
-  for _, pattern in ipairs(patterns) do
-    -- Use globpath with hidden = 1 to include hidden files
-    local files = vim.fn.globpath(cwd, pattern, false, true, 1)
-    if #files > 0 then
-      return files[1] -- return first match
-    end
-  end
-
-  return nil
-end
-
-local eslint_glob = { "*eslint*", ".*eslint*" }
-local root = require("lspconfig.util").root_pattern
-
 return {
   {
     "neovim/nvim-lspconfig",
@@ -24,44 +7,6 @@ return {
       diagnostics = {
         float = { border = "rounded" },
       },
-      servers = {
-        vtsls = {
-          on_attach = function(client, _)
-            client.handlers["textDocument/publishDiagnostics"] = function() end
-          end,
-          root_dir = root("tsconfig.json"),
-          settings = {
-            typescript = {
-              diagnostics = {
-                enabled = false,
-              },
-              updateImportsOnFileMove = { enabled = "always" },
-              suggest = {
-                completeFunctionCalls = true,
-              },
-              inlayHints = {
-                enumMemberValues = { enabled = true },
-                functionLikeReturnTypes = { enabled = true },
-                parameterNames = { enabled = "literals" },
-                parameterTypes = { enabled = true },
-                propertyDeclarationTypes = { enabled = true },
-                variableTypes = { enabled = false },
-              },
-            },
-          },
-        },
-        eslint = {
-          root_dir = function(fname)
-            local cfg = get_config_in_cwd(eslint_glob)
-            if cfg then
-              return vim.fn.getcwd()
-            else
-              return nil
-            end
-          end,
-          workingDirectory = { mode = "auto" },
-        },
-      },
     },
   },
   {
@@ -70,10 +15,10 @@ return {
     opts = function(_, opts)
       local ft = {
         lua = { "stylua" },
-        typescript = { "biome", "eslint_d", "prettierd", stop_after_first = true },
-        javascript = { "biome", "eslint_d", "prettierd", stop_after_first = true },
-        json = { "biome", "prettierd", stop_after_first = true },
-        jsonc = { "biome", "prettierd", stop_after_first = true },
+        typescript = { "eslint_d", "prettierd", stop_after_first = true },
+        javascript = { "eslint_d", "prettierd", stop_after_first = true },
+        json = { "prettierd", stop_after_first = true },
+        jsonc = { "prettierd", stop_after_first = true },
         sql = { "sqlfluff" },
       }
       opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft or {}, ft)

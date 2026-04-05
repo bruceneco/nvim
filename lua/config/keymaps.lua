@@ -4,6 +4,7 @@
 
 local map = vim.keymap.set
 map({ "i", "x" }, "jk", "<esc>", { desc = "Quit insert mode" })
+map({ "i", "x" }, "JK", "<esc>", { desc = "Quit insert mode" })
 
 map("i", "<C-l>", "<Right>", { desc = "Cursor right" })
 map("i", "<C-h>", "<Left>", { desc = "Cursor left" })

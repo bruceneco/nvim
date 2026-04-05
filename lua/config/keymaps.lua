@@ -18,7 +18,6 @@ map("n", "<leader>gg", function()
   Snacks.lazygit.open()
 end, { desc = "LazyGit (Snacks)" })
 
-map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode", noremap = true })
 map("t", "<C-q>", "<C-\\><C-n>", { desc = "Exit terminal mode with C-q", noremap = true })
 map("t", "<C-k>", function()
   vim.cmd.stopinsert()

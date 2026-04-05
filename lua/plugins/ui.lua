@@ -1,5 +1,15 @@
 return {
   {
+    "coder/claudecode.nvim",
+    opts = {
+      terminal = {
+        snacks_win_opts = {
+          position = "bottom",
+        },
+      },
+    },
+  },
+  {
     "lewis6991/gitsigns.nvim",
     opts = {
       current_line_blame = true,

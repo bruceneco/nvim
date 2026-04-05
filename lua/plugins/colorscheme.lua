@@ -2,8 +2,11 @@ return {
   {
     "scottmckendry/cyberdream.nvim",
     lazy = false,
+    tag = "v5.3.0",
     opts = {
       transparent = true,
+      italic_comments = true,
+      terminal_colors = true,
     },
   },
   {
@@ -25,7 +28,6 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    priority = 1000,
     opts = {
       transparent_background = true,
       integrations = {

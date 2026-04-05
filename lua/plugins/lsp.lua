@@ -13,21 +13,9 @@ local function get_config_in_cwd(patterns)
 end
 
 local eslint_glob = { "*eslint*", ".*eslint*" }
-local biome_glob = { "*biome*", ".*biome" }
 local root = require("lspconfig.util").root_pattern
 
 return {
-  {
-    "mason-org/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "biome",
-        "eslint_d",
-        "prettierd",
-        "sqlfluff",
-      },
-    },
-  },
   {
     "neovim/nvim-lspconfig",
     lazy = true,
@@ -95,7 +83,6 @@ return {
   },
   {
     "saghen/blink.cmp",
-    version = "v1.*", -- pin to a known working release
     dependencies = {
       "rafamadriz/friendly-snippets",
       {

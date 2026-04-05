@@ -8,6 +8,15 @@ return {
         float = { border = "rounded" },
       },
     },
+    config = function(_, opts)
+      local lspconfig = require("lspconfig")
+      vim.diagnostic.config(opts.diagnostics)
+
+      -- golangci-lint-langserver para Go linting em tempo real
+      lspconfig.golangci_lint_ls.setup({
+        root_dir = lspconfig.util.root_pattern("go.mod"),
+      })
+    end,
   },
   {
     "stevearc/conform.nvim",
@@ -15,6 +24,7 @@ return {
     opts = function(_, opts)
       local ft = {
         lua = { "stylua" },
+        go = { "golangci-lint", "goimports", "gofmt" },
         typescript = { "eslint_d", "prettierd", stop_after_first = true },
         javascript = { "eslint_d", "prettierd", stop_after_first = true },
         json = { "prettierd", stop_after_first = true },

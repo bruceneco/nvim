@@ -4,9 +4,13 @@ return {
     opts = {
       terminal = {
         snacks_win_opts = {
-          position = "bottom",
+          position = "float",
+          width = 0.9,
+          height = 0.9,
+          border = "rounded",
         },
       },
+      auto_start = false,
     },
   },
   {

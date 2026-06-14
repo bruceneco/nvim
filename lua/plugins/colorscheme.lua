@@ -1,7 +1,7 @@
 return {
   {
     "scottmckendry/cyberdream.nvim",
-    lazy = false,
+    lazy = true,
     tag = "v5.3.0",
     opts = {
       transparent = true,
@@ -28,7 +28,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {
       integrations = {

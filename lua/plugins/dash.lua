@@ -4,7 +4,6 @@ return {
     opts = {
       dashboard = {
         preset = {
-          header = [[]],
           pick = function(cmd, opts)
             return LazyVim.pick(cmd, opts)()
           end,

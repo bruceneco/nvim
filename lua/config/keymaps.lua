@@ -19,13 +19,3 @@ map("n", "<leader>gg", function()
 end, { desc = "LazyGit (Snacks)" })
 
 map("t", "<C-q>", "<C-\\><C-n>", { desc = "Exit terminal mode with C-q", noremap = true })
-
-map("n", "<leader>t1", function()
-  vim.cmd("colorscheme catppuccin-mocha")
-end, { desc = "Colorscheme: catppuccin-mocha" })
-map("n", "<leader>t2", function()
-  vim.cmd("colorscheme cyberdream")
-end, { desc = "Colorscheme: cyberdream" })
-map("n", "<leader>t3", function()
-  vim.cmd("colorscheme tokyonight")
-end, { desc = "Colorscheme: tokyonight" })

@@ -9,12 +9,12 @@ return {
     ---@type AutoSession.Config
     opts = {
       suppressed_dirs = { "~/", "~/Projects", "~/projects", "~/Downloads", "/" },
-      auto_restore = false,
+      auto_restore = true,
       cwd_change_handling = false,
       auto_save = false,
       auto_delete_empty_sessions = false,
       continue_restore_on_error = true,
-      log_level = nil,
+      log_level = vim.log.levels.OFF,
       git_use_branch_name = true,
       session_lens = {
         enabled = false,

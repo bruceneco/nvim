@@ -37,11 +37,11 @@ return {
     opts = {
       picker = {
         hidden = true,
-        ignored = true,
+        ignored = false,
         sources = {
           files = {
             hidden = true,
-            ignored = true,
+            ignored = false,
           },
           explorer = {
             actions = {
@@ -70,7 +70,7 @@ return {
             auto_close = true,
             layout = {
               cycle = true,
-              preview = true, ---@diagnostic disable-line: assign-type-mismatch
+              preview = true,
               layout = {
                 box = "horizontal",
                 position = "float",

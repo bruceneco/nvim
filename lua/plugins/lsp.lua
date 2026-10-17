@@ -1,11 +1,36 @@
 return {
   {
+    "nvim-mini/mini.snippets",
+    opts = function(_, opts)
+      local gen_loader = require("mini.snippets").gen_loader
+
+      -- Inicializa a tabela de snippets se ela não existir
+      opts.snippets = opts.snippets or {}
+
+      -- Adiciona o carregador por linguagem apontando para a sua pasta local
+      table.insert(opts.snippets, gen_loader.from_lang({ dir = vim.fn.stdpath("config") .. "/snippets" }))
+    end,
+  },
+
+  {
     "neovim/nvim-lspconfig",
     lazy = true,
     event = "BufReadPost",
     opts = {
+      servers = {
+        gopls = {
+          settings = {
+            gopls = {
+              usePlaceholders = false,
+            },
+          },
+        },
+      },
       diagnostics = {
         float = { border = "rounded" },
+      },
+      inlay_hints = {
+        enabled = false,
       },
     },
   },
@@ -60,30 +85,31 @@ return {
       },
       completion = {
         accept = {
-          auto_brackets = { enabled = true },
+          auto_brackets = { enabled = false },
         },
         trigger = {
-          show_in_snippet = false,
+          show_in_snippet = true,
         },
         list = {
-          selection = { preselect = false, auto_insert = true },
+          selection = { preselect = true, auto_insert = true },
         },
         menu = {
+          auto_show = true,
           border = "rounded",
           draw = {
             treesitter = { "lsp" },
           },
         },
         documentation = {
-          auto_show = true,
+          auto_show = false,
           auto_show_delay_ms = 200,
           window = {
             border = "rounded",
           },
         },
         ghost_text = {
-          enabled = false, -- vim.g.ai_cmp,
-          show_without_selection = false,
+          enabled = true, -- vim.g.ai_cmp,
+          show_without_selection = true,
           show_with_selection = true,
         },
       },
@@ -124,6 +150,7 @@ return {
           "snippet_forward",
           "fallback",
         },
+        ["<CR>"] = { "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
         ["<Up>"] = { "select_prev", "fallback" },
@@ -131,8 +158,8 @@ return {
         ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
         ["<C-n>"] = { "select_next", "fallback_to_mappings" },
 
-        ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-        ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+        ["<C-b>"] = { "scroll_documentation_up", "snippet_backward", "fallback" },
+        ["<C-f>"] = { "scroll_documentation_down", "snippet_forward", "fallback" },
 
         ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
       },

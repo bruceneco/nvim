@@ -1,0 +1,29 @@
+{
+  "If Error Not Nil": {
+    "prefix": "ifer",
+    "body": [
+      "if err != nil {",
+      "\treturn ${1:err}",
+      "}"
+    ],
+    "description": "Default Go error validation"
+  },
+  "Struct": {
+    "prefix": "str",
+    "body": [
+      "type ${1} struct {",
+      "\t ${2}",
+      "}"
+    ],
+    "description": "Default struct"
+  },
+  "Inner struct": {
+    "prefix": "istr",
+    "body": [
+      "${1} struct {",
+      "\t ${2}",
+      "}"
+    ],
+    "description": "Inner struct"
+  }
+}

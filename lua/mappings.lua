@@ -26,7 +26,7 @@ map("n", "K", function()
       focus = false,
     }
   end
-end, { desc = "Abrir diagnóstico / Focar na segunda vez" })
+end, { desc = "Open diagnosis (twice to focus)" })
 
 map("n", "<C-S-K>", function()
   local win_found = false
@@ -45,6 +45,20 @@ map("n", "<C-S-K>", function()
   if not win_found then
     vim.lsp.buf.hover()
   end
-end, { desc = "LSP Hover Doc (pressione duas vezes para focar)" })
+end, { desc = "LSP Hover Doc (press twice to focus)" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+map("n", "<leader>sk", function()
+  require("telescope.builtin").keymaps {
+    layout_strategy = "horizontal",
+    layout_config = {
+      width = 0.9,
+      height = 0.9,
+      preview_width = 0.5, -- Gives 50% of the screen width to the preview window
+    },
+  }
+end, { desc = "Search Keymaps [Telescope]" })
+
+map("n", "<leader>sg", function()
+  require("telescope.builtin").live_grep()
+end, { desc = "Search Live Grep"})

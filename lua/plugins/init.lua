@@ -21,8 +21,37 @@ return {
   	opts = {
   		ensure_installed = {
   			"vim", "lua", "vimdoc",
-       "html", "css"
+       "html", "css", "c_shard", "razor"
   		},
   	},
   },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:Crashdummyy/mason-registry"
+      },
+      ensure_installed = {
+        "lua-language-server",
+
+        "xmlformatter",
+        "csharpier",
+        "prettier",
+
+        "stylua",
+        "eslint-lsp",
+        "typescript-language-server",
+        "json-lsp",
+        "roslyn",
+      }
+    }
+  },
+  {
+    "seblyng/roslyn.nvim",
+    ---@module 'roslyn.config'
+    ---@type RoslynNvimConfig
+    ft = { "cs", "razor" },
+    opts = {}
+  }
 }
